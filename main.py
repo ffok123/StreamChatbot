@@ -109,7 +109,7 @@ st.sidebar.write('Square of Number',get_number, 'is', get_number*get_number)
 #
 # displaying API data
 API_URL = 'https://cleanuri.com/api/v1/shorten'
-st.subheader('URL SHORTNER')
+st.title("URL shortener")
 _url = st.text_input('Enter URL')
 pressed = st.button('Get Short Link')
 
