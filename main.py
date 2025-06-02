@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from PIL import Image
 import requests
-
+from textblob import TextBlob
 #Title and Subheader
 st.title("Life Expectancy By Country - By Florence")
 st.write("Life Expectancy Data of India and USA from the year 1960 till 2016.")
@@ -55,6 +55,36 @@ if _input:
         st.pyplot(fig)
     else:
         st.write('Data Does Not Exist in the Database')
+
+
+
+
+def analyze_sentiment(text):
+    """Analyzes the sentiment of the given text."""
+    analysis = TextBlob(text)
+    if analysis.sentiment.polarity > 0:
+        return "Positive"
+    elif analysis.sentiment.polarity < 0:
+        return "Negative"
+    else:
+        return "Neutral"
+
+st.title("Simple Sentiment Analyzer")
+st.write("Enter some text below and I'll tell you if it's positive, negative, or neutral!")
+
+user_input = st.text_area("Enter your text here:")
+
+if st.button("Analyze Sentiment"):
+    if user_input:
+        sentiment = analyze_sentiment(user_input)
+        st.success(f"Sentiment: **{sentiment}**")
+        st.info(f"Polarity: {TextBlob(user_input).sentiment.polarity:.2f} (ranges from -1.0 to 1.0)")
+        st.info(f"Subjectivity: {TextBlob(user_input).sentiment.subjectivity:.2f} (ranges from 0.0 to 1.0)")
+    else:
+        st.warning("Please enter some text to analyze.")
+
+
+
 
 # Sidebar Column
 st.sidebar.title('Sidebar Widgets')
