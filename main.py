@@ -27,17 +27,6 @@ st.write(df.head())
 if st.checkbox('show full data'):
     df
 
-# Display Code
-st.write('Displaying Code in Streamlit app')
-with st.echo():
-    # square function
-    def square(x):
-        print(x*x)
-    # cube function
-    def cube(x):
-        print(x*x*x)
-    square(5) #output 25
-    cube(5) # output 125
 
 # Display barplot and data on search Input
 _input = st.text_input("Enter Year to Search")
