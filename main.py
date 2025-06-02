@@ -28,6 +28,19 @@ if st.checkbox('show full data'):
     df
 
 
+# Dropdown to select a column
+selected_column = st.selectbox("Select a column to check for missing data:", df.columns)
+
+# Button to check for missing data
+if st.button("Check Missing Data"):
+    # Identify rows with missing values in the selected column
+    missing_data = df[df[selected_column].isnull()]
+    if missing_data.empty:
+        st.write(f"No missing data found in column '{selected_column}'.")
+    else:
+        st.write(f"Rows with missing data in column '{selected_column}':")
+        st.write(missing_data)
+
 # Display barplot and data on search Input
 _input = st.text_input("Enter Year to Search")
 if _input:
