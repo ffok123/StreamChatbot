@@ -136,8 +136,9 @@ if st.button("Get Analysis"):
 
             # Display close price and volume
             
-            st.write("Historical Close Price and Volume for 2025:")
+            st.write("Historical Close Price for 2025:")
             st.line_chart(tickerDf.Close)
+            st.write("Historical Volume for 2025:")
             st.line_chart(tickerDf.Volume)
         except Exception as e:
             st.error(f"An error occurred: {e}")
