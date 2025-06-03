@@ -131,19 +131,14 @@ if st.button("Get Analysis"):
     if user_input:
         try:
             # Fetch stock data using yfinance
-            stock = yf.Ticker(user_input)
-            data = stock.history(period="1y", start="2025-01-01", end="2025-12-31")
+            ticketData = yf.Ticker(user_input)
+            tickerDf = ticketData.history(period="1y", start="2025-01-01", end="2025-4-30")
 
             # Display close price and volume
-            if not data.empty:
-                st.write("Historical Close Price and Volume for 2025:")
-                st.write(data[["Close", "Volume"]])
-                
-                # Plotting the data
-                st.line_chart(data["Close"], use_container_width=True)
-                st.bar_chart(data["Volume"], use_container_width=True)
-            else:
-                st.warning("No data available for the given stock symbol in 2025.")
+            
+            st.write("Historical Close Price and Volume for 2025:")
+            st.line_chart(tickerDf.Close)
+            st.bar_chart(tickerDf.Volumn)
         except Exception as e:
             st.error(f"An error occurred: {e}")
     else:
